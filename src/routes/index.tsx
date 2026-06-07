@@ -34,10 +34,14 @@ function Index() {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-black">
+    <div className="relative min-h-screen w-full bg-black">
       <div
         data-us-project="tnAhw4e67txvvqrBP7oz"
-        className="absolute inset-0 h-full w-full"
+        data-us-scale="1"
+        data-us-dpi="1.5"
+        data-us-disablemobile="false"
+        className="fixed inset-0 block h-screen w-screen overflow-hidden"
+        style={{ zIndex: -10, minHeight: "100dvh" }}
       />
     </div>
   );
