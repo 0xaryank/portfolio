@@ -941,7 +941,6 @@
     const nav = document.querySelector('nav');
     let lastScrollY   = engine.scrollTop;
     let scrollTimer   = null;
-    let mouseTimer    = null;
     let navTicking    = false;
 
     function relativeScrollTop() {
@@ -958,6 +957,7 @@
 
     function hideNav() {
       if (!inHero()) nav.classList.add('hide');
+      nav.classList.remove('frosted');
     }
 
     function navScrollHandler() {
@@ -965,22 +965,23 @@
       navTicking = true;
       requestAnimationFrame(() => {
         const cur = engine.scrollTop;
-        if (inHero())       showNav();
-        else if (cur < lastScrollY) showNav();
-        else if (cur > lastScrollY) hideNav();
-
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(() => { if (!inHero()) hideNav(); }, 1500);
+        if (inHero()) {
+          showNav();
+          nav.classList.remove('frosted');
+        } else if (cur < lastScrollY - 2) {
+          // scrolling up → show with glassy effect
+          showNav();
+          nav.classList.add('frosted');
+        } else if (cur > lastScrollY + 2) {
+          // scrolling down → hide
+          hideNav();
+        }
         lastScrollY = cur;
         navTicking = false;
       });
     }
 
-    document.addEventListener('mousemove', () => {
-      showNav();
-      clearTimeout(mouseTimer);
-      mouseTimer = setTimeout(() => { if (!inHero()) hideNav(); }, 2000);
-    });
+    engine.addEventListener('scroll', navScrollHandler, { passive: true });
 
     // ── 6. Nav link clicks ────────────────────────────────
     document.querySelectorAll('nav a[href^="#"]').forEach(link => {
