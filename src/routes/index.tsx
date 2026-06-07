@@ -40,8 +40,8 @@ function Index() {
         data-us-scale="1"
         data-us-dpi="1.5"
         data-us-disablemobile="false"
-        className="fixed inset-0 block h-screen w-screen overflow-hidden"
-        style={{ zIndex: -10, minHeight: "100dvh" }}
+        className="fixed inset-0 block w-screen overflow-hidden"
+        style={{ height: "100vh", minHeight: "100dvh" }}
       />
     </div>
   );
