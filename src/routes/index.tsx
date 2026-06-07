@@ -43,6 +43,13 @@ function Index() {
         className="fixed inset-0 block w-screen overflow-hidden"
         style={{ height: "100vh", minHeight: "100dvh" }}
       />
+      <iframe
+        src="/portfolio.html"
+        title="Portfolio"
+        className="fixed inset-0 h-screen w-screen border-0"
+        style={{ background: "transparent", zIndex: 10 }}
+        allow="autoplay"
+      />
     </div>
   );
 }
