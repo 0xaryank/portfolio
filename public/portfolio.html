@@ -659,10 +659,7 @@
 </style>
 </head>
 <body>
-<div id="scroll-engine">
-<div id="scroll-content">
-
-<!-- NAV -->
+<!-- NAV (outside scroll engine so it's never affected by scroll/clone logic) -->
 <nav>
   <a href="#hero">v1.0</a>
   <a href="#work">Work</a>
@@ -670,6 +667,9 @@
   <a href="#background">Background</a>
   <a href="#contact">Contact</a>
 </nav>
+
+<div id="scroll-engine">
+<div id="scroll-content">
 
 <!-- HERO -->
 <section class="hero" id="hero">
