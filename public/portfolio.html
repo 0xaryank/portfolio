@@ -876,8 +876,6 @@
 
       [cloneTop, cloneBot].forEach(clone => {
         clone.setAttribute('aria-hidden', 'true');
-        // Remove fixed-position elements from clones — they'd double-render over the real ones
-        clone.querySelectorAll('nav').forEach(el => el.remove());
         clone.querySelectorAll('a,button,input,textarea,select,[tabindex]').forEach(el => {
           el.setAttribute('tabindex', '-1');
         });
@@ -889,7 +887,6 @@
 
     // ── 2. Seed: position viewport at top of real (middle) panel ──
     function init() {
-      showHomeNav();
       buildStack();
       // Use requestAnimationFrame to ensure layout is complete before measuring
       requestAnimationFrame(() => {
@@ -897,7 +894,6 @@
           engine.scrollTop = content.offsetTop;
           lastScrollY = engine.scrollTop;
           showHomeNav();
-          isInitializing = false;
         });
       });
     }
@@ -946,7 +942,6 @@
     let lastScrollY   = engine.scrollTop;
     let scrollTimer   = null;
     let navTicking    = false;
-    let isInitializing = true;
 
     function showHomeNav() {
       nav.classList.remove('hide', 'frosted');
@@ -970,10 +965,6 @@
     }
 
     function navScrollHandler() {
-      if (isInitializing) {
-        showHomeNav();
-        return;
-      }
       if (navTicking) return;
       navTicking = true;
       requestAnimationFrame(() => {
