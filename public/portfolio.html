@@ -889,11 +889,15 @@
 
     // ── 2. Seed: position viewport at top of real (middle) panel ──
     function init() {
+      showHomeNav();
       buildStack();
       // Use requestAnimationFrame to ensure layout is complete before measuring
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           engine.scrollTop = content.offsetTop;
+          lastScrollY = engine.scrollTop;
+          showHomeNav();
+          isInitializing = false;
         });
       });
     }
@@ -942,6 +946,11 @@
     let lastScrollY   = engine.scrollTop;
     let scrollTimer   = null;
     let navTicking    = false;
+    let isInitializing = true;
+
+    function showHomeNav() {
+      nav.classList.remove('hide', 'frosted');
+    }
 
     function relativeScrollTop() {
       return engine.scrollTop - content.offsetTop;
@@ -961,13 +970,16 @@
     }
 
     function navScrollHandler() {
+      if (isInitializing) {
+        showHomeNav();
+        return;
+      }
       if (navTicking) return;
       navTicking = true;
       requestAnimationFrame(() => {
         const cur = engine.scrollTop;
         if (inHero()) {
-          showNav();
-          nav.classList.remove('frosted');
+          showHomeNav();
         } else if (cur < lastScrollY - 2) {
           // scrolling up → show with glassy effect
           showNav();
