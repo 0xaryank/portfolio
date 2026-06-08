@@ -41,7 +41,7 @@ function Index() {
         data-us-dpi="1.5"
         data-us-disablemobile="false"
         className="fixed inset-0 block w-screen overflow-hidden"
-        style={{ height: "100vh", minHeight: "100dvh" }}
+        style={{ height: "100vh", minHeight: "100dvh", pointerEvents: "none" }}
       />
       <iframe
         src="/portfolio.html"
