@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,6 +14,8 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const bgRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   useEffect(() => {
     const w = window as unknown as { UnicornStudio?: { isInitialized: boolean; init: () => void } };
     const ensureInit = () => {
