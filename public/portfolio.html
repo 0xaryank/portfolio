@@ -617,90 +617,71 @@
   }
 
   .h-work-card-left {
-    width: 100%;
+    width: 50%;
     background: #ffffff;
     padding: 3rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     gap: 2rem;
-    position: relative;
-    overflow: hidden;
   }
 
   .h-work-card-right {
-    display: none;
+    width: 50%;
     background: transparent;
   }
 
   .h-work-card-num {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: .22em;
+    font-size: 12px;
+    letter-spacing: .2em;
     text-transform: uppercase;
-    color: #0d2340;
+    color: #999;
     position: absolute;
-    bottom: 1.75rem;
-    right: 2rem;
-    opacity: .55;
+    top: 1.75rem;
+    right: 3rem;
   }
 
   .h-work-card-body {
     display: flex;
     flex-direction: column;
-    gap: .5rem;
-    max-width: 28rem;
+    gap: 1rem;
   }
 
   .h-work-card-title {
-    font-family: 'Bebas Neue', 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: clamp(80px, 14vw, 240px);
-    line-height: .85;
-    letter-spacing: -.02em;
-    text-transform: uppercase;
-    background: linear-gradient(180deg, #0c2340 0%, #1a4a6e 45%, #5cbdb9 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin-top: auto;
-    align-self: flex-start;
-    order: 3;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -.01em;
+    color: #0d2340;
   }
 
   .h-work-card-meta {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: .22em;
+    font-size: 11px;
+    letter-spacing: .2em;
     text-transform: uppercase;
-    color: #0d2340;
-    order: 1;
+    color: #888;
   }
 
   .h-work-card-desc {
-    font-size: .85rem;
+    font-size: .95rem;
     line-height: 1.55;
-    color: #1a1a1a;
+    color: #444;
     font-weight: 300;
-    max-width: 22rem;
-    order: 2;
   }
 
   .h-work-card-link {
     font-family: 'DM Mono', monospace;
-    font-size: 18px;
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
     color: #e85d3a;
     text-decoration: none;
-    border: none;
-    padding: 0;
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    width: 28px;
-    height: 28px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    border-bottom: 1px solid #e85d3a;
+    padding-bottom: 4px;
+    align-self: flex-start;
     transition: transform .2s, color .2s;
   }
 
@@ -820,7 +801,7 @@
                 <div class="h-work-card-meta">In Progress · 80%</div>
               </div>
               <p class="h-work-card-desc">Designing and documenting a virtual SOC environment for monitoring, logging, incident response, and security operations analysis.</p>
-              <a href="#" class="h-work-card-link" aria-label="View details">↗</a>
+              <a href="#" class="h-work-card-link">View Details →</a>
             </div>
             <div class="h-work-card-right"></div>
           </div>
@@ -833,7 +814,7 @@
                 <div class="h-work-card-meta">Personal</div>
               </div>
               <p class="h-work-card-desc">Conducted a gap analysis against ISO/IEC 27001 Annex A controls, mapping findings to a remediation roadmap and ISMS documentation set.</p>
-              <a href="#" class="h-work-card-link" aria-label="View details">↗</a>
+              <a href="#" class="h-work-card-link">View Details →</a>
             </div>
             <div class="h-work-card-right"></div>
           </div>
@@ -846,7 +827,7 @@
                 <div class="h-work-card-meta">Personal</div>
               </div>
               <p class="h-work-card-desc">Built a structured risk register and assessment methodology aligned with ISO 27005, covering threat identification, likelihood scoring, and treatment options.</p>
-              <a href="#" class="h-work-card-link" aria-label="View details">↗</a>
+              <a href="#" class="h-work-card-link">View Details →</a>
             </div>
             <div class="h-work-card-right"></div>
           </div>
@@ -859,7 +840,7 @@
                 <div class="h-work-card-meta">Personal</div>
               </div>
               <p class="h-work-card-desc">Reviewed and documented an asset lifecycle management process including classification, ownership assignment, and disposal procedures aligned to ISO 27001 A.8.</p>
-              <a href="#" class="h-work-card-link" aria-label="View details">↗</a>
+              <a href="#" class="h-work-card-link">View Details →</a>
             </div>
             <div class="h-work-card-right"></div>
           </div>
