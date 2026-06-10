@@ -10,8 +10,8 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --bg:      #0d0d0d;
-    --bg2:     #1a1a1a;
+    --bg:      transparent;
+    --bg2:     rgba(255,255,255,.04);
     --surface: rgba(240,237,230,.03);
     --border:  rgba(240,237,230,.12);
     --text:    #f0ede6;
@@ -46,7 +46,7 @@
     background: transparent;
     list-style: none;
     transform: translateY(0);
-    transition: transform .35s cubic-bezier(.4,0,.2,1), background .3s ease, height .3s ease;
+    transition: transform .35s cubic-bezier(.4,0,.2,1), background .3s ease, backdrop-filter .3s ease, height .3s ease;
   }
 
   nav.hide {
@@ -55,10 +55,12 @@
 
   nav.frosted {
     height: 48px;
-    background: rgba(13,13,13,.9);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border-bottom: 1px solid var(--rule);
+    background: rgba(10, 10, 10, 0.35);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    transform: translateY(0);
   }
 
   nav a {
@@ -94,7 +96,7 @@
     padding: 0 3rem 0;
     position: relative;
     overflow: hidden;
-    background: transparent;
+    background: var(--bg);
   }
 
   .hero-top {
@@ -230,6 +232,9 @@
   .section {
     padding: 7rem 3rem;
     border-top: 1px solid var(--rule);
+    background: transparent !important;
+    position: relative;
+    z-index: 1;
   }
 
   .section-label {
@@ -237,18 +242,22 @@
     font-size: 10px;
     letter-spacing: .22em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: #ffffff !important;
     margin-bottom: 4rem;
     display: flex;
     align-items: center;
     gap: 1rem;
+    background: transparent !important;
+    opacity: 1 !important;
+    position: relative;
+    z-index: 10;
   }
 
   .section-label::after {
     content: '';
     flex: 1;
     height: 1px;
-    background: var(--rule);
+    background: rgba(255,255,255,.2);
   }
 
   /* ── DISCIPLINES ── */
@@ -261,7 +270,7 @@
 
   .service-item {
     padding: 3rem 2.5rem;
-    background: transparent;
+    background: var(--bg);
     transition: background .3s;
   }
 
@@ -297,9 +306,9 @@
   /* ── ABOUT ── */
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1.6fr;
+    grid-template-columns: 1.6fr 1fr;
     gap: 6rem;
-    align-items: start;
+    align-items: end;
   }
 
   .about-left h2 {
@@ -338,7 +347,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: .6rem;
-    margin-top: 2.5rem;
+    margin-top: 0;
   }
 
   .tag {
@@ -364,7 +373,7 @@
 
   .cred-item {
     padding: 2.5rem;
-    background: transparent;
+    background: var(--bg);
     backdrop-filter: blur(16px);
     display: flex;
     align-items: flex-start;
@@ -536,17 +545,156 @@
 
   /* ── FOOTER ── */
 
-  /* ── REVEAL ANIMATIONS ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity .7s ease, transform .7s ease;
+  /* ── HORIZONTAL WORK SECTION (FULL PAGE SLIDE) ── */
+  #work {
+    padding: 0 !important;
+    border-top: none !important;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: transparent !important;
   }
 
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+  .work-wrapper {
+    width: 100%;
+    height: 100vh;
+    transform-origin: 100% 50%;
+    scale: 0.9;
+    x: 50vw;
   }
+
+  .work-inner {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: #ffffff !important;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: transparent !important;
+    opacity: 1 !important;
+    position: relative;
+    z-index: 10;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,.2);
+  }
+
+  .h-work-outer {
+    overflow: hidden;
+    width: 100%;
+    flex: 1;
+  }
+
+  .h-work-track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    height: 100%;
+  }
+
+  .h-work-card {
+    width: 100vw;
+    flex-shrink: 0;
+    display: flex;
+    height: 100%;
+  }
+
+  .h-work-card-left {
+    width: 50%;
+    background: #ffffff;
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .h-work-card-right {
+    width: 50%;
+    background: transparent;
+  }
+
+  .h-work-card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .h-work-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .h-work-card-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #0d0d0d;
+    letter-spacing: -.01em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .h-work-card-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #666;
+  }
+
+  .h-work-card-desc {
+    font-size: .92rem;
+    line-height: 1.8;
+    color: #555;
+    font-weight: 300;
+  }
+
+  .h-work-card-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #0d0d0d;
+    text-decoration: none;
+    border-bottom: 0.5px solid #0d0d0d;
+    padding-bottom: 2px;
+    align-self: flex-start;
+    transition: color .2s, border-color .2s;
+  }
+
+  .h-work-card-link:hover { color: #666; border-color: #666; }
+
+  /* ── SECTION SLIDE-IN FROM BOTTOM-RIGHT ── */
+  .section, .contact-section {
+    transform-origin: 100% 100%;
+  }
+
+  /* ── REVEAL ANIMATIONS (GSAP handles these) ── */
+  .reveal { opacity: 0; }
+  .split-line-wrap { overflow: hidden; display: block; }
+  .wordmark-text { opacity: 0; transform: translateY(80px); }
+  .hero-info-row { opacity: 0; transform: translateY(16px); }
 
   /* ── MOBILE ── */
   @media (max-width: 720px) {
@@ -569,8 +717,8 @@
 
 <!-- NAV -->
 <nav>
+  <a href="#hero">Home</a>
   <a href="#work">Work</a>
-  <a href="#about">About</a>
   <a href="#background">Background</a>
   <a href="#contact">Contact</a>
 </nav>
@@ -616,56 +764,10 @@
 </section>
 
 
-<!-- WORK -->
-<section class="section" id="work">
-
-  <div class="section-label">Active Project</div>
-
-  <div class="reveal" style="max-width:640px;margin-bottom:5rem;">
-    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1rem;">
-      <span style="font-family:'Inter',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.01em;text-transform:uppercase;color:var(--text);">SOC Lab Development</span>
-      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.12em;">80%</span>
-    </div>
-    <div style="height:1px;background:var(--rule);margin-bottom:1.5rem;position:relative;">
-      <div style="position:absolute;left:0;top:0;height:1px;width:80%;background:var(--text);"></div>
-    </div>
-    <p style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);line-height:1.8;letter-spacing:.04em;margin-bottom:1.5rem;">Designing and documenting a virtual SOC environment for monitoring, logging, incident response, and security operations analysis.</p>
-    <a href="#" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text);text-decoration:none;border-bottom:0.5px solid var(--text);padding-bottom:2px;">View Details →</a>
-  </div>
-
-  <div class="section-label">Selected Work</div>
-
-  <div style="max-width:640px;">
-    <div class="reveal" style="padding:1.25rem 0;border-top:0.5px solid var(--rule);display:flex;justify-content:space-between;align-items:center;">
-      <span style="font-family:'Inter',sans-serif;font-size:15px;font-weight:500;color:var(--text);">ISO 27001 Readiness Assessment</span>
-      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.08em;">Personal</span>
-    </div>
-    <div class="reveal" style="padding:1.25rem 0;border-top:0.5px solid var(--rule);display:flex;justify-content:space-between;align-items:center;">
-      <span style="font-family:'Inter',sans-serif;font-size:15px;font-weight:500;color:var(--text);">IT Risk Assessment Framework</span>
-      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.08em;">Personal</span>
-    </div>
-    <div class="reveal" style="padding:1.25rem 0;border-top:0.5px solid var(--rule);border-bottom:0.5px solid var(--rule);display:flex;justify-content:space-between;align-items:center;">
-      <span style="font-family:'Inter',sans-serif;font-size:15px;font-weight:500;color:var(--text);">IT Asset Management Process Review</span>
-      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.08em;">Personal</span>
-    </div>
-    <div style="padding-top:1.5rem;">
-      <a href="#" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:0.5px solid var(--muted);padding-bottom:2px;">Project Archive →</a>
-    </div>
-  </div>
-
-</section>
-
 <!-- ABOUT -->
-<section class="section" id="about">
-  <div class="section-label">About</div>
+<section class="section" id="about" style="border-top:none;">
   <div class="about-grid">
-    <div class="about-left reveal">
-      <h2>Risk<br>Is My<br><em>domain</em></h2>
-    </div>
     <div class="about-right reveal">
-      <p>IT professional transitioning into <strong>IT/IS audit and GRC</strong>. My background in IT operations gives me a hands-on understanding of how systems actually work — I apply that knowledge through the lens of risk, controls, and compliance frameworks.</p>
-      <p>Currently pursuing the <strong>ISO 27001 Lead Auditor</strong> certification, with a foundation in cybersecurity from NED University. Targeting roles at firms where governance and controls are taken seriously — Big 4 advisory, internal audit teams, and compliance functions.</p>
-      <p>The goal is simple: help organizations understand their exposure, close the gaps, and build security postures that last.</p>
       <div class="about-tags">
         <span class="tag">ISO 27001</span>
         <span class="tag">IT/IS Audit</span>
@@ -677,6 +779,71 @@
         <span class="tag">ISMS</span>
         <span class="tag">IT Governance</span>
         <span class="tag">Policy Documentation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="section" id="work">
+  <div class="work-wrapper">
+    <div class="work-inner">
+      <div class="h-work-outer">
+        <div class="h-work-track">
+
+          <div class="h-work-card">
+            <div class="h-work-card-left">
+              <div class="h-work-card-num">01</div>
+              <div class="h-work-card-body">
+                <div class="h-work-card-title">SOC Lab Development</div>
+                <div class="h-work-card-meta">In Progress · 80%</div>
+              </div>
+              <p class="h-work-card-desc">Designing and documenting a virtual SOC environment for monitoring, logging, incident response, and security operations analysis.</p>
+              <a href="#" class="h-work-card-link">View Details →</a>
+            </div>
+            <div class="h-work-card-right"></div>
+          </div>
+
+          <div class="h-work-card">
+            <div class="h-work-card-left">
+              <div class="h-work-card-num">02</div>
+              <div class="h-work-card-body">
+                <div class="h-work-card-title">ISO 27001 Readiness Assessment</div>
+                <div class="h-work-card-meta">Personal</div>
+              </div>
+              <p class="h-work-card-desc">Conducted a gap analysis against ISO/IEC 27001 Annex A controls, mapping findings to a remediation roadmap and ISMS documentation set.</p>
+              <a href="#" class="h-work-card-link">View Details →</a>
+            </div>
+            <div class="h-work-card-right"></div>
+          </div>
+
+          <div class="h-work-card">
+            <div class="h-work-card-left">
+              <div class="h-work-card-num">03</div>
+              <div class="h-work-card-body">
+                <div class="h-work-card-title">IT Risk Assessment Framework</div>
+                <div class="h-work-card-meta">Personal</div>
+              </div>
+              <p class="h-work-card-desc">Built a structured risk register and assessment methodology aligned with ISO 27005, covering threat identification, likelihood scoring, and treatment options.</p>
+              <a href="#" class="h-work-card-link">View Details →</a>
+            </div>
+            <div class="h-work-card-right"></div>
+          </div>
+
+          <div class="h-work-card">
+            <div class="h-work-card-left">
+              <div class="h-work-card-num">04</div>
+              <div class="h-work-card-body">
+                <div class="h-work-card-title">IT Asset Management Process Review</div>
+                <div class="h-work-card-meta">Personal</div>
+              </div>
+              <p class="h-work-card-desc">Reviewed and documented an asset lifecycle management process including classification, ownership assignment, and disposal procedures aligned to ISO 27001 A.8.</p>
+              <a href="#" class="h-work-card-link">View Details →</a>
+            </div>
+            <div class="h-work-card-right"></div>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
@@ -758,6 +925,32 @@
 
 <!-- FOOTER -->
 
+<!-- UNICORNSTUDIO BACKGROUND -->
+<div
+  data-us-project="tnAhw4e67txvvqrBP7oz"
+  data-us-scale="1"
+  data-us-dpi="1.5"
+  data-us-disablemobile="false"
+  style="position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;"
+></div>
+
+<script>
+  (function() {
+    var w = window;
+    var ensureInit = function() {
+      if (w.UnicornStudio && !w.UnicornStudio.isInitialized) {
+        w.UnicornStudio.init();
+        w.UnicornStudio.isInitialized = true;
+      }
+    };
+    if (w.UnicornStudio) { ensureInit(); return; }
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.25/dist/unicornStudio.umd.js';
+    script.onload = ensureInit;
+    document.body.appendChild(script);
+  })();
+</script>
+
 <script>
   const nav = document.querySelector('nav');
   const hero = document.querySelector('.hero');
@@ -778,6 +971,7 @@
 
   function hideNav() {
     if (!inHero()) nav.classList.add('hide');
+    nav.classList.remove('frosted');
   }
 
   window.addEventListener('scroll', () => {
@@ -825,17 +1019,224 @@
     });
   }, { threshold: 0.4 });
   sections.forEach(s => sectionObserver.observe(s));
+</script>
 
-  // reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+<!-- GSAP + SplitText + ScrollTrigger + Lenis -->
+<script src="https://cdn.prod.website-files.com/gsap/3.15.0/gsap.min.js"></script>
+<script src="https://cdn.prod.website-files.com/gsap/3.15.0/SplitText.min.js"></script>
+<script src="https://cdn.prod.website-files.com/gsap/3.15.0/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.15/dist/lenis.min.js"></script>
+<script>
+  gsap.registerPlugin(SplitText, ScrollTrigger);
+
+  // ── Lenis smooth scroll ──
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smooth: true,
+  });
+  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time) => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  window.addEventListener('load', () => {
+
+    // ── Hero wordmark slide up ──
+    gsap.to('.wordmark-text', {
+      opacity: 1,
+      y: 0,
+      duration: 1.4,
+      ease: 'power3.out',
+      delay: 0.1
+    });
+
+    // ── Hero info rows stagger in ──
+    gsap.to('.hero-info-row', {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      stagger: 0.1,
+      delay: 0.4
+    });
+
+    // ── Hero tagline split lines ──
+    if (typeof SplitText !== 'undefined') {
+      const taglineSplit = new SplitText('.hero-tagline', { type: 'lines', mask: 'lines' });
+      gsap.from(taglineSplit.lines, {
+        y: '110%',
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        stagger: 0.12,
+        delay: 0.3
+      });
+    }
+
+    // ── SECTION SLIDE IN FROM BOTTOM-RIGHT ──
+    // Each section starts scaled down from bottom-right corner, then scales to full + slides in from right
+    const slideSections = gsap.utils.toArray('.section, .contact-section');
+
+    slideSections.forEach((section) => {
+      // Initial state: scaled down, offset to bottom-right
+      gsap.set(section, {
+        scale: 0.88,
+        x: '6vw',
+        y: '40px',
+        opacity: 0,
+        transformOrigin: '100% 100%',
+        borderRadius: '12px',
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 92%',
+          end: 'top 30%',
+          scrub: 0.6,
+        }
+      });
+
+      tl.to(section, {
+        scale: 1,
+        x: 0,
+        y: 0,
+        opacity: 1,
+        borderRadius: '0px',
+        ease: 'power2.out',
+      });
+
+      // ── Content inside each section fades up as section enters ──
+      const revealEls = section.querySelectorAll('.reveal, .section-label');
+      if (revealEls.length) {
+        gsap.set(revealEls, { opacity: 0, y: 28 });
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top 65%',
+          once: true,
+          onEnter: () => {
+            gsap.to(revealEls, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: 'power3.out',
+              stagger: 0.08,
+            });
+          }
+        });
       }
     });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => revealObserver.observe(el));
+
+    // ── FULL-PAGE WORK SECTION HORIZONTAL SLIDE ──
+    const workSection = document.querySelector('#work');
+    const workWrapper = document.querySelector('.work-wrapper');
+    const workTrack = document.querySelector('.h-work-track');
+
+    if (workSection && workWrapper && workTrack) {
+      const getScrollDistance = () => -(workTrack.scrollWidth - window.innerWidth);
+
+      const workTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: workSection,
+          start: 'top top',
+          end: () => '+=' + (window.innerHeight * 2.5),
+          scrub: 1,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        }
+      });
+
+      // Section slides in from right - NO FADE
+      workTl.to(workWrapper, {
+        scale: 1,
+        x: 0,
+        duration: 0.4,
+        ease: 'power2.out',
+      }, 0);
+
+      // Track scrolls left - cards come naturally
+      workTl.to(workTrack, {
+        x: getScrollDistance,
+        duration: 0.6,
+        ease: 'none',
+      }, 0.2);
+    }
+
+
+    ScrollTrigger.create({
+      trigger: '.about-tags',
+      start: 'top 80%',
+      once: true,
+      onEnter: () => {
+        gsap.from('.tag', {
+          opacity: 0,
+          y: 14,
+          scale: 0.92,
+          duration: 0.5,
+          ease: 'power2.out',
+          stagger: 0.06
+        });
+      }
+    });
+
+    // ── Split headings on scroll ──
+    if (typeof SplitText !== 'undefined') {
+      document.querySelectorAll('.contact-left h2').forEach(el => {
+        const split = new SplitText(el, { type: 'lines', mask: 'lines' });
+        gsap.from(split.lines, {
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+          y: '110%',
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
+          stagger: 0.1
+        });
+      });
+
+      // ── Exp role lines ──
+      document.querySelectorAll('.exp-role').forEach(el => {
+        const split = new SplitText(el, { type: 'lines', mask: 'lines' });
+        gsap.from(split.lines, {
+          scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' },
+          y: '100%',
+          opacity: 0,
+          duration: 0.7,
+          ease: 'power3.out',
+        });
+      });
+    }
+
+    // ── Contact links stagger ──
+    gsap.from('.contact-link', {
+      scrollTrigger: {
+        trigger: '.contact-right',
+        start: 'top 88%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 0,
+      y: 12,
+      duration: 0.6,
+      ease: 'power2.out',
+      stagger: 0.1
+    });
+
+    // ── Exp points slide in from left ──
+    gsap.utils.toArray('.exp-points li').forEach((li, i) => {
+      gsap.from(li, {
+        scrollTrigger: { trigger: li, start: 'top 94%', toggleActions: 'play none none none' },
+        opacity: 0,
+        x: -14,
+        duration: 0.5,
+        ease: 'power2.out',
+        delay: i * 0.06
+      });
+    });
+
+  });
 </script>
 </body>
 </html>
